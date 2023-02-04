@@ -69,14 +69,10 @@ document.querySelectorAll('.letter').forEach(letter => {
             }
 
             // Si toutes les lettres ont été trouvé (gagné), alors éxecute la fonction win
-            if (word === hiddenWord) {
-                win();
-            }
+            if (word === hiddenWord) { win() };
 
             // S'il ne reste plus de chance (perdu), alors éxecute la fonction loose
-            if (luck < 1) {
-                loose();
-            }
+            if (luck < 1) { loose() };
 
             // la lettre est désactivée dans tous les cas car déjà cliqué (e.target = div)
             e.target.style.opacity = 0.5;
@@ -96,21 +92,25 @@ const interval = setInterval(() => {
 }, 1000)
 
 
-// Fonction qui séléctionne aléatoirement un mot dans le tableau words et le met en majuscule
+// Séléctionne aléatoirement un mot dans le tableau words et le met en majuscule
 function randomWord(words) {
     return words[Math.floor(Math.random() * words.length)].toUpperCase();
 }
 
-// Fonction qui affiche le mot complet puis une alerte 'Gagné!' et reactualise la page
+// Affiche le mot complet puis une alerte 'Gagné!' et reactualise la page
 function win() {
     screen.innerHTML = '<span style="color:greenyellow;">' + word + '</span>';
-    alert('Gagné ! Vous avez trouvé le mot.');
-    location.reload();
+    setTimeout(() => {
+        alert('Gagné ! Vous avez trouvé le mot.');
+        location.reload();
+    }, 100);
 }
 
-// Fonction qui affiche quand même le mot complet puis une alerte 'Perdu!' et reactualise la page
+// Affiche quand même le mot complet puis une alerte 'Perdu!' et reactualise la page
 function loose() {
     screen.innerHTML = '<span style="color:red;">' + word + '</span>';
-    alert('Perdu ! Le mot caché était : ' + word);
-    location.reload();
+    setTimeout(() => {
+        alert('Perdu ! Le mot caché était : ' + word);
+        location.reload();
+    }, 100);
 }
